@@ -1,15 +1,4 @@
-def statment(user: int) -> int:
-    string = user
-    return  string
-
-def make_shirt(size='M', text='I love Python'):
-    print("You chose {0} size. There will be text '{1}' on your shirt!".format(size,text))
-
-def album_info(artist, name, tracks=0):
-    album = {'artist': artist, 'name': name}
-    if tracks:
-        album = {'artist': artist.title(), 'name': name.capitalize(), 'tracks': tracks}
-    return album
+from module_8 import *
 
 
 if __name__ == '__main__':
@@ -18,11 +7,25 @@ if __name__ == '__main__':
     album = album_info('System of a Down', 'NEW ALBUM')
     print(album)
     while True:
-        artist = input('Input artist name: ')
-        album_name = input('Input album name: ')
-        tracks = input('Input count of tracks \n(Press q anytime to quit):')
-        if (artist == 'q') or (album_name == 'q') or (tracks == 'q'):
+        artist = input('Input artist name (Press q anytime to quit): ')
+        if artist == 'q':
             break
-        else:
-            album = album_info(artist, album_name, tracks)
+        album_name = input('Input album name: ')
+        if album_name == 'q':
+            break
+        tracks = int(input('Input count of tracks: '))
+        if tracks == 'q':
+            break
+
+        album = album_info(artist, album_name, tracks)
         print(album)
+    mag_list = ['Dave', 'Ted', 'John', 'Alex']
+    show_magicians(mag_list)
+    make_great(mag_list)
+    get_sandwich('bread', 'pepperoni', 'green peppers')
+    get_sandwich('bun', 'bacon')
+    print('\n')
+    user_profile = build_profile('Sam', 'Sepiol', location='NY', field='hackerman')
+    print(user_profile)
+    car = car_info('Chevrolet', 'Camaro', price=35000, type='coupe')
+    print(car)
