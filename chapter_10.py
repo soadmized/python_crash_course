@@ -29,18 +29,17 @@ def greet_user():
     """
     Приветствует пользователя по имени
     """
-    check_flag = True
     username = get_stored_username()
     if username:
-        while check_flag:
+        while True:
             check_name = input("Is your name {}? y/n: ".format(username))
             if check_name == 'y':
                 print("Welcome back, " + username + "!")
-                check_flag = False
+                break
             elif check_name == 'n':
                 username = get_new_username()
                 print("We'll remember you when you come back, " + username + "!")
-                check_flag = False
+                break
             else:
                 print("Please enter y or n: ")
     else:
@@ -79,12 +78,11 @@ if __name__ == "__main__":
             print(rep_line.rstrip())
 
     print("\n------- guest book ---------")
-    flag = True
-    while flag:
+    while True:
         name = input("Input your name (q to exit): ")
         if name == 'q':
             print("Goodbye!")
-            flag = False
+            break
         else:
             with open('guest_book', 'a') as file:
                 file.write(name)
@@ -93,8 +91,8 @@ if __name__ == "__main__":
 
     print("\n ------ ex. 10-6 ---------")
 
-    flag = True
-    while flag:
+
+    while True:
         try:
             add_1 = int(input('Input fisrt number: '))
             add_2 = int(input('Input second number: '))
@@ -103,7 +101,7 @@ if __name__ == "__main__":
         else:
             res = add_1 + add_2
             print(res)
-            flag = False
+            break
 
     print("\n ------ ex. 10-8 ---------")
     try:
