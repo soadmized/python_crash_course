@@ -1,3 +1,6 @@
+import re
+
+
 class TextHandler:
 
     """
@@ -6,15 +9,45 @@ class TextHandler:
     """
 
     def __init__(self):
-        self.text = text
-        self.counters = {'set_entity_sum': 0, 'set_entity_total_avg': 0,
-                         'process_batch_sum': 0, 'process_batch_total_avg': 0,
-                         'process_event_sum': 0, 'process_event_total_avg': 0,
-                         'set_rule_sum': 0, 'set_rule_total_avg': 0}
+        """
+        Dict structure: success error total_count sum_time total_avg_time
+        """
+        self.old_set_entity = {}
+        self.old_process_batch = {}
+        self.old_process_event = {}
+        self.old_set_rule = {}
+        self.new_set_entity_ = {}
+        self.new_process_batch = {}
+        self.new_process_event = {}
+        self.new_set_rule = {}
 
-    def parser(self):
-        with open('{PerfInfo}') as file:
-            pass
+    def text_parser(self):
+        """
+        parsing counters from perf_info.txt
+        """
+        with open('perf_info.txt') as file:
+            counters = file.readlines()
+        flag = False
+        handled_counters = []
+        for line in counters:
+            line = line.split('|')
+            line = [i.strip() for i in line]  # remove spaces
+            line = line[2:-5]
+            if (len(line) == 0) or ('Scenario' in line):
+                del line
+            else:
+                handled_counters.append(line)
+        return handled_counters
+
+    def counters_parser(self, handled_counters):
+        """
+        parsing counters for each scenario
+        :param handled_counters:
+        :return:
+        """
+        pass
+
+
 
 
 class Plotter:
@@ -26,6 +59,5 @@ class Plotter:
 
 
 if __name__ == '__main__':
-    """text = input('input prompt: ')
-    print(text)"""
-    pass
+    handler = TextHandler()
+    handler.text_parser()
